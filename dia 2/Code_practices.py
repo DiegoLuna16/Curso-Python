@@ -123,3 +123,25 @@ puntos_anteriores = 875
 puntos_nuevos = 350
 
 print(f"Has ganado {puntos_nuevos} puntos! En total, acumulas {puntos_anteriores + puntos_nuevos} puntos")
+
+# Práctica Operadores Matemáticos 22
+# Muestra en pantalla el cociente (división al piso) de los siguientes dos números: 874 dividido entre 27.
+
+# Debes mostrar solo el valor numérico que resulta de esta operación.
+
+print(874//27)
+
+
+# Práctica Operadores Matemáticos 23
+# Muestra en pantalla el módulo (es decir, el resto) de la división entre 456 y 33.
+
+# Debes mostrar solo el valor numérico que resulta de esta operación.
+
+print(456%33)
+
+# Práctica Operadores Matemáticos 24
+# Calcula y muestra en pantalla la raíz cuadrada de 783.
+
+# Debes mostrar solo el valor numérico que resulta de esta operación.
+
+print(783**0.5)
