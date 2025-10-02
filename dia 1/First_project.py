@@ -1,4 +1,1 @@
-print("Hola mundo")
-print("Hola te digo 'hola")
-print(123)
-
+print(f"El nombre de tu cerveza es\n '{input("Cual es tu animal favorito")} {input("Cual es tu color preferido?")}' ")
