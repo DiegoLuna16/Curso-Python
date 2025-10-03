@@ -127,3 +127,13 @@ sorteo.pop()
 
 sorteo = {"Camila", "Margarita", "Axel", "Jorge", "Miguel", "Mónica"}
 sorteo.add("Damián")
+
+# Práctica Booleanos 1
+
+prueba = 1 == 2
+# Práctica Booleanos 2
+
+print((17834/34)>87*56)
+# Práctica Booleanos 3
+
+print(25**0.5==5)
