@@ -97,3 +97,19 @@ mi_dic = {"nombre":"Karen", "apellido":"Jurgens", "edad":35, "ocupacion":"Period
 mi_dic["edad"] = 36
 mi_dic["ocupacion"] = "Editora"
 mi_dic["pais"] = "Colombia"
+
+# Práctica Tuples 1
+
+mi_tupla = (1, 2, 3, 2, 3, 1, 3, 2, 3, 3, 3, 1, 3, 2, 2, 1, 3, 2)
+ 
+print(mi_tupla.count(2))
+# Práctica Tuples 2
+
+mi_tupla = (1, 2, 3, 2, 3, 1, 3, 2)
+ 
+mi_lista = list(mi_tupla)
+# Práctica Tuples 3
+
+mi_tupla = (1, 2, 3, 4)
+ 
+a, b, c, d = mi_tupla
