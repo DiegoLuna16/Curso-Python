@@ -49,3 +49,23 @@ print(frase)
 frase = "Si la implementación es difícil de explicar, puede que sea una mala idea."
  
 print(frase.replace("difícil", "fácil").replace("mala","buena"))
+
+# Práctica Propiedades de Strings 1
+
+palabra = "Repetición"
+ 
+print(palabra * 15)
+# Práctica Propiedades de Strings 2
+
+haiku = '''
+Tierra mojada
+mis recuerdos de viaje,
+entre las lluvias
+'''
+ 
+print("agua" not in haiku)
+# Práctica Propiedades de Strings 3
+
+palabra = "electroencefalografista"
+ 
+print(len(palabra))
