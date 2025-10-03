@@ -113,3 +113,17 @@ mi_lista = list(mi_tupla)
 mi_tupla = (1, 2, 3, 4)
  
 a, b, c, d = mi_tupla
+
+# Práctica Sets 1
+
+mi_set_1 = {1, 2, "tres", "cuatro"}
+mi_set_2 = {"tres", 4, 5}
+mi_set_3 = mi_set_1.union(mi_set_2)
+# Práctica Sets 2
+
+sorteo = {"Camila", "Margarita", "Axel", "Jorge", "Miguel", "Mónica"}
+sorteo.pop()
+# Práctica Sets 3
+
+sorteo = {"Camila", "Margarita", "Axel", "Jorge", "Miguel", "Mónica"}
+sorteo.add("Damián")
