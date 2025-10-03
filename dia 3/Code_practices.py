@@ -28,3 +28,24 @@ print(frase[8::3])
 frase = "Es genial trabajar con ordenadores. No discuten, lo recuerdan todo y no se beben tu cerveza"
  
 print(frase[::-1])
+
+frase = "Si la implementación es difícil de explicar, puede que sea una mala idea."
+
+
+# Práctica Métodos de String 1
+
+frase = "Especialmente en las comunicaciones electrónicas, la escritura enteramente en mayúsculas equivale a gritar."
+ 
+print(frase.upper())
+# Práctica Métodos de String 2
+
+lista_palabras = ["La","legibilidad","cuenta."]
+ 
+frase = " ".join(lista_palabras)
+ 
+print(frase)
+# Práctica Métodos de String 3
+
+frase = "Si la implementación es difícil de explicar, puede que sea una mala idea."
+ 
+print(frase.replace("difícil", "fácil").replace("mala","buena"))
