@@ -206,3 +206,21 @@ diccionario_edades = {"Carlos":55, "María":42, "Mabel":78, "José":44, "Lucas":
  
 edad_minima = min(diccionario_edades.values())
 ultimo_nombre = max(diccionario_edades.keys())
+
+# Práctica Random 1
+
+from random import randint
+ 
+aleatorio = randint(1,10)
+# Práctica Random 2
+
+from random import *
+ 
+aleatorio = random()
+# Práctica Random 3
+
+from random import *
+ 
+nombres = ["Carlos", "Julia", "Nicole", "Laura", "Mailen"]
+ 
+sorteo = choice(nombres)
