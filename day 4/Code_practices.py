@@ -138,3 +138,16 @@ for numero in lista_numeros:
         print(numero)
     else:
         break
+    
+# Práctica Rango 1
+
+mi_lista = list(range(2500,2586))
+# Práctica Rango 2
+
+mi_lista = list(range(3,301,3))
+# Práctica Rango 3
+
+suma_cuadrados = 0
+ 
+for i in range(1,16):
+    suma_cuadrados += i**2
