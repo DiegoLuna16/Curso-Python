@@ -151,3 +151,20 @@ suma_cuadrados = 0
  
 for i in range(1,16):
     suma_cuadrados += i**2
+    
+# Práctica Enumerador 1
+
+lista_nombres = ["Marcos", "Laura", "Mónica", "Javier", "Celina", "Marta", "Darío", "Emiliano", "Melisa"]
+ 
+for indice,nombre in enumerate(lista_nombres):
+    print(f'{nombre} se encuentra en el índice {indice}')
+# Práctica Enumerador 2
+
+lista_indices = list(enumerate("Python"))
+# Práctica Enumerador 3
+
+lista_nombres = ["Marcos", "Laura", "Mónica", "Javier", "Celina", "Marta", "Darío", "Emiliano", "Melisa"]
+ 
+for i, nombre in enumerate(lista_nombres):
+    if nombre[0] == "M":
+        print(i)
