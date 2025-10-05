@@ -168,3 +168,24 @@ lista_nombres = ["Marcos", "Laura", "Mónica", "Javier", "Celina", "Marta", "Dar
 for i, nombre in enumerate(lista_nombres):
     if nombre[0] == "M":
         print(i)
+        
+# Práctica Zip 1
+
+capitales = ["Berlín", "Tokio", "París", "Helsinki", "Ottawa", "Canberra"]
+paises = ["Alemania", "Japón", "Francia", "Finlandia", "Canadá", "Australia"]
+ 
+for pais, capital in zip(paises, capitales):
+    print(f"La capital de {pais} es {capital}")
+# Práctica Zip 2
+
+marcas = ["Nike", "Lenovo", "Nissan"]
+productos = ["zapatillas", "notebook", "automóviles"]
+ 
+mi_zip = zip(marcas, productos)
+# Práctica Zip 3
+
+espaniol = ["uno", "dos", "tres", "cuatro", "cinco"]
+portugues = ["um", "dois", "três", "quatro", "cinco"]
+ingles = ["one", "two", "three", "four", "five"]
+ 
+numeros = list(zip(espaniol, portugues, ingles))
