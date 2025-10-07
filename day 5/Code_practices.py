@@ -180,3 +180,9 @@ def devolver_distintos(num1,num2,num3):
     else:
         return lista_numeros[1]
     
+def exercise(string):
+    list_string = list(set(string))
+    list_string.sort()
+    return list_string
+
+print(exercise("entretenido"))
