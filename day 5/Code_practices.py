@@ -185,4 +185,11 @@ def exercise(string):
     list_string.sort()
     return list_string
 
-print(exercise("entretenido"))
+def counter_zeros(*args):
+    for arg in range(0,len(args) - 1):
+        print(args[arg], args[arg + 1])
+        if args[arg] == 0 and args[arg + 1] == 0:
+            return True
+        else:
+            pass
+    return False
