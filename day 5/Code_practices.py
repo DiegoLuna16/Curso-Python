@@ -167,3 +167,16 @@ def describir_persona(nombre, **kwargs):
     print(f"Características de {nombre}:")
     for clave, valor in kwargs.items():
         print(f'{clave}: {valor}')
+        
+#Ejercicio 1
+
+def devolver_distintos(num1,num2,num3):
+    lista_numeros = [num1,num2,num3]
+    lista_numeros.sort()
+    if sum(lista_numeros) > 15:
+        return max(lista_numeros)
+    elif sum(lista_numeros) < 15:
+        return min(lista_numeros)
+    else:
+        return lista_numeros[1]
+    
