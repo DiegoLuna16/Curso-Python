@@ -55,7 +55,3 @@ def iniciar():
         terminar_programa = terminar()
 
     print("\n👋 Gracias por usar el sistema de turnos.")
-
-
-if __name__ == "__main__":
-    iniciar()
