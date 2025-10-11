@@ -32,3 +32,19 @@ hoy = date.today()
 from datetime import datetime
  
 minutos = datetime.now().minute
+
+# Práctica Módulo Math 1
+
+import math
+ 
+resultado = math.log10(25)
+# Práctica Módulo Math 2
+
+import math
+ 
+resultado = math.sqrt(math.pi)
+# Práctica Módulo Math 3
+
+import math
+ 
+resultado = math.factorial(7)
