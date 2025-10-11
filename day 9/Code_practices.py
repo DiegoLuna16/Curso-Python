@@ -16,3 +16,19 @@ mi_diccionario["edad"] = 44
 from collections import deque
  
 lista_ciudades= deque(["Londres", "Berlin", "París", "Madrid", "Roma", "Moscú"])
+
+# Práctica Módulo Datetime 1
+
+from datetime import date
+ 
+mi_fecha = date(1999, 2, 3)
+# Práctica Módulo Datetime 2
+
+from datetime import date
+ 
+hoy = date.today()
+# Práctica Módulo Datetime 3
+
+from datetime import datetime
+ 
+minutos = datetime.now().minute
