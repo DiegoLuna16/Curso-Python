@@ -67,7 +67,9 @@ while is_running:
             elif event.key == pygame.K_RIGHT:
                 player_x_change += 1
             elif event.key == pygame.K_SPACE:
-                shoot_bullet(player_x, bullet_y)
+                if not visible_bullet:
+                    bullet_x = player_x
+                    shoot_bullet(bullet_x, bullet_y)
                 
         #Evento soltar flechas
         elif event.type == pygame.KEYUP:
@@ -95,8 +97,12 @@ while is_running:
         enemy_y += enemy_y_change
         
     # modificar ubicacion de las balas
+    if bullet_y <= -32:
+        bullet_y = 500
+        visible_bullet = False
+    
     if visible_bullet:
-        shoot_bullet(player_x,bullet_y)
+        shoot_bullet(bullet_x,bullet_y)
         bullet_y -= bullet_y_change
     
     #mantener dentro de bordes de las balas o destruir en colision con naves
