@@ -14,7 +14,7 @@ pygame.display.set_icon(icon)
 # Variables Jugador 
 img_player = pygame.image.load('cohete.png')
 player_x = 368
-player_y = 536
+player_y = 500
 player_x_change = 0
 
 #jugador 
@@ -25,8 +25,8 @@ def player(x,y):
 img_enemy = pygame.image.load('ovni.png')
 enemy_x = random.randint(0,736)
 enemy_y = random.randint(50,200)
-enemy_x_change = 0
-enemy_y_change = 0
+enemy_x_change = 0.3
+enemy_y_change = 40
 
 #Enemy
 def enemy(x,y):
@@ -52,10 +52,6 @@ while is_running:
                 player_x_change -= 0.3
             elif event.key == pygame.K_RIGHT:
                 player_x_change += 0.3
-            elif event.key == pygame.K_UP:
-                player_y -= 5
-            elif event.key == pygame.K_DOWN:
-                player_y += 5
                 
         #Evento soltar flechas
         elif event.type == pygame.KEYUP:
@@ -65,11 +61,22 @@ while is_running:
     # modificar ubicacion del jugador
     player_x += player_x_change
     
-    # mantener dentro de bordes
+    # mantener dentro de bordes del jugador
     if player_x <= 0:
         player_x = 0
     elif player_x >= 736:
         player_x = 736
+        
+    # modificar ubicacion del enemigo
+    enemy_x += enemy_x_change
+    
+    # mantener dentro de bordes del enemigo
+    if enemy_x <= 0:
+        enemy_x_change = 0.3 
+        enemy_y += enemy_y_change
+    elif enemy_x >= 736:
+        enemy_x_change = -0.3
+        enemy_y += enemy_y_change
     
     player(player_x,player_y)
     enemy(enemy_x,enemy_y)
