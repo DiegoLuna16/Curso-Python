@@ -10,6 +10,7 @@ display = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Invasion espacial")
 icon = pygame.image.load("space.png")
 pygame.display.set_icon(icon)
+background_image = pygame.image.load('fondo.jpg')
 
 # Variables Jugador 
 img_player = pygame.image.load('cohete.png')
@@ -25,7 +26,7 @@ def player(x,y):
 img_enemy = pygame.image.load('ovni.png')
 enemy_x = random.randint(0,736)
 enemy_y = random.randint(50,200)
-enemy_x_change = 0.3
+enemy_x_change = 1
 enemy_y_change = 40
 
 #Enemy
@@ -36,8 +37,8 @@ def enemy(x,y):
 #Loop del juego
 is_running = True
 while is_running:
-    #RGB
-    display.fill((51,23,59))
+    #imagen de fondo
+    display.blit(background_image,(0,0))
     
     #iterar eventos
     for event in pygame.event.get():
@@ -49,9 +50,9 @@ while is_running:
         #Evento presionar flechas
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player_x_change -= 0.3
+                player_x_change -= 1
             elif event.key == pygame.K_RIGHT:
-                player_x_change += 0.3
+                player_x_change += 1
                 
         #Evento soltar flechas
         elif event.type == pygame.KEYUP:
@@ -72,10 +73,10 @@ while is_running:
     
     # mantener dentro de bordes del enemigo
     if enemy_x <= 0:
-        enemy_x_change = 0.3 
+        enemy_x_change = 1 
         enemy_y += enemy_y_change
     elif enemy_x >= 736:
-        enemy_x_change = -0.3
+        enemy_x_change = 1
         enemy_y += enemy_y_change
     
     player(player_x,player_y)
