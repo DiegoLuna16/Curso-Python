@@ -1,4 +1,5 @@
 import pygame
+import random
 #Inicializa pygame
 pygame.init()
 
@@ -11,16 +12,26 @@ icon = pygame.image.load("space.png")
 pygame.display.set_icon(icon)
 
 # Variables Jugador 
-
-img_jugador = pygame.image.load('cohete.png')
-jugador_x = 368
-jugador_y = 536
-jugador_x_cambio = 0
-
+img_player = pygame.image.load('cohete.png')
+player_x = 368
+player_y = 536
+player_x_change = 0
 
 #jugador 
-def jugador(x,y):
-    display.blit(img_jugador,(x,y))
+def player(x,y):
+    display.blit(img_player,(x,y))
+    
+#Variables enemigos
+img_enemy = pygame.image.load('ovni.png')
+enemy_x = random.randint(0,736)
+enemy_y = random.randint(50,200)
+enemy_x_change = 0
+enemy_y_change = 0
+
+#Enemy
+def enemy(x,y):
+    display.blit(img_enemy,(x,y))
+
 
 #Loop del juego
 is_running = True
@@ -38,29 +49,30 @@ while is_running:
         #Evento presionar flechas
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                jugador_x_cambio -= 0.3
+                player_x_change -= 0.3
             elif event.key == pygame.K_RIGHT:
-                jugador_x_cambio += 0.3
+                player_x_change += 0.3
             elif event.key == pygame.K_UP:
-                jugador_y -= 5
+                player_y -= 5
             elif event.key == pygame.K_DOWN:
-                jugador_y += 5
+                player_y += 5
                 
         #Evento soltar flechas
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                jugador_x_cambio = 0
+                player_x_change = 0
                 
     # modificar ubicacion del jugador
-    jugador_x += jugador_x_cambio
+    player_x += player_x_change
     
     # mantener dentro de bordes
-    if jugador_x <= 0:
-        jugador_x = 0
-    elif jugador_x >= 736:
-        jugador_x = 736
+    if player_x <= 0:
+        player_x = 0
+    elif player_x >= 736:
+        player_x = 736
     
-    jugador(jugador_x,jugador_y)
+    player(player_x,player_y)
+    enemy(enemy_x,enemy_y)
     
     #actualizar
     pygame.display.update()
