@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 #Inicializa pygame
 pygame.init()
 
@@ -17,6 +18,7 @@ img_player = pygame.image.load('cohete.png')
 player_x = 368
 player_y = 500
 player_x_change = 0
+score = 0
 
 #jugador 
 def player(x,y):
@@ -36,8 +38,8 @@ def enemy(x,y):
 #Variables balas
 img_bullet = pygame.image.load('bala.png')
 bullet_x = 368
-bullet_y = 468
-bullet_y_change = 1
+bullet_y = 468 
+bullet_y_change = 3
 visible_bullet = False
 
 #Enemy
@@ -45,6 +47,14 @@ def shoot_bullet(x,y):
     global visible_bullet
     visible_bullet = True
     display.blit(img_bullet,(x + 16 ,y + 10))
+
+#detectar colisiones
+def is_collision(x_1,x_2,y_1,y_2):
+    distance = math.sqrt(math.pow(( x_2 - x_1 ), 2 ) + math.pow(( y_2 - y_1 ), 2))
+    if distance < 30:
+        return True
+    else:
+        return False
 
 
 #Loop del juego
@@ -63,9 +73,9 @@ while is_running:
         #Evento presionar teclas
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player_x_change -= 1
+                player_x_change -= 2
             elif event.key == pygame.K_RIGHT:
-                player_x_change += 1
+                player_x_change += 2
             elif event.key == pygame.K_SPACE:
                 if not visible_bullet:
                     bullet_x = player_x
@@ -90,7 +100,7 @@ while is_running:
     
     # mantener dentro de bordes del enemigo
     if enemy_x <= 0:
-        enemy_x_change = 1 
+        enemy_x_change = 1
         enemy_y += enemy_y_change
     elif enemy_x >= 736:
         enemy_x_change = -1
@@ -104,16 +114,19 @@ while is_running:
     if visible_bullet:
         shoot_bullet(bullet_x,bullet_y)
         bullet_y -= bullet_y_change
-    
-    #mantener dentro de bordes de las balas o destruir en colision con naves
-    if bullet_y < 0:
-        pass 
-    
+        
+    #colision
+    collision = is_collision(enemy_x,bullet_x,enemy_y,bullet_y)
+
+    if collision:
+        bullet_y = 500
+        visible_bullet = False
+        score += 1
+        enemy_x = random.randint(0,736)
+        enemy_y = random.randint(50,200)
+        
     player(player_x,player_y)
-    enemy(enemy_x,enemy_y)
-    
-    
-    
+    enemy(enemy_x,enemy_y)    
     
     #actualizar
     pygame.display.update()
