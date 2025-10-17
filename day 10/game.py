@@ -32,6 +32,19 @@ enemy_y_change = 40
 #Enemy
 def enemy(x,y):
     display.blit(img_enemy,(x,y))
+    
+#Variables balas
+img_bullet = pygame.image.load('bala.png')
+bullet_x = 368
+bullet_y = 468
+bullet_y_change = 1
+visible_bullet = False
+
+#Enemy
+def shoot_bullet(x,y):
+    global visible_bullet
+    visible_bullet = True
+    display.blit(img_bullet,(x + 16 ,y + 10))
 
 
 #Loop del juego
@@ -47,12 +60,14 @@ while is_running:
         if event.type == pygame.QUIT:
             is_running = False
         
-        #Evento presionar flechas
+        #Evento presionar teclas
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player_x_change -= 1
             elif event.key == pygame.K_RIGHT:
                 player_x_change += 1
+            elif event.key == pygame.K_SPACE:
+                shoot_bullet(player_x, bullet_y)
                 
         #Evento soltar flechas
         elif event.type == pygame.KEYUP:
@@ -76,11 +91,23 @@ while is_running:
         enemy_x_change = 1 
         enemy_y += enemy_y_change
     elif enemy_x >= 736:
-        enemy_x_change = 1
+        enemy_x_change = -1
         enemy_y += enemy_y_change
+        
+    # modificar ubicacion de las balas
+    if visible_bullet:
+        shoot_bullet(player_x,bullet_y)
+        bullet_y -= bullet_y_change
+    
+    #mantener dentro de bordes de las balas o destruir en colision con naves
+    if bullet_y < 0:
+        pass 
     
     player(player_x,player_y)
     enemy(enemy_x,enemy_y)
+    
+    
+    
     
     #actualizar
     pygame.display.update()
