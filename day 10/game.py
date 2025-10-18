@@ -31,6 +31,13 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 text_x = 10
 text_y = 10
 
+#texto final del juego
+final_font = pygame.font.Font('freesansbold.ttf',40)
+
+def final_text():
+    my_final_font = final_font.render('GAME OVER', True, (255,255,255))
+    display.blit(my_final_font,(270,270))
+
 def show_score(x,y):
     texto = font.render(f'Score: {score}', True, (255,255,255))
     display.blit(texto,(x,y))
@@ -122,6 +129,15 @@ while is_running:
         
     # modificar ubicacion del enemigo
     for e in range(quantity_enemies):
+        
+        #fin del jnuego
+        if enemy_y[e] > 440:
+            for k in range(quantity_enemies):
+                enemy_y[k] = 1000
+            final_text()
+            mixer.music.stop()
+            break
+        
         enemy_x[e] += enemy_x_change[e]
     
     # mantener dentro de bordes del enemigo
