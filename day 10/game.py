@@ -18,8 +18,16 @@ img_player = pygame.image.load('cohete.png')
 player_x = 368
 player_y = 500
 player_x_change = 0
-score = 0
 
+
+score = 0
+font = pygame.font.Font('freesansbold.ttf', 32)
+text_x = 10
+text_y = 10
+
+def show_score(x,y):
+    texto = font.render(f'Score: {score}', True, (255,255,255))
+    display.blit(texto,(x,y))
 #jugador 
 def player(x,y):
     display.blit(img_player,(x,y))
@@ -136,9 +144,9 @@ while is_running:
         shoot_bullet(bullet_x,bullet_y)
         bullet_y -= bullet_y_change
         
-        
+    
     player(player_x,player_y)
-   
+    show_score(text_x,text_y)
     
     #actualizar
     pygame.display.update()
