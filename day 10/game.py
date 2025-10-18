@@ -25,15 +25,23 @@ def player(x,y):
     display.blit(img_player,(x,y))
     
 #Variables enemigos
-img_enemy = pygame.image.load('ovni.png')
-enemy_x = random.randint(0,736)
-enemy_y = random.randint(50,200)
-enemy_x_change = 1
-enemy_y_change = 40
+img_enemy = []
+enemy_x = []
+enemy_y = []
+enemy_x_change = []
+enemy_y_change = []
+quantity_enemies = 8
+
+for e in range(quantity_enemies):
+    img_enemy.append(pygame.image.load('ovni.png'))
+    enemy_x.append(random.randint(0,736))
+    enemy_y.append(random.randint(50,200))
+    enemy_x_change.append(1)
+    enemy_y_change.append(40)
 
 #Enemy
-def enemy(x,y):
-    display.blit(img_enemy,(x,y))
+def enemy(x,y,ene):
+    display.blit(img_enemy[ene],(x,y))
     
 #Variables balas
 img_bullet = pygame.image.load('bala.png')
@@ -96,16 +104,29 @@ while is_running:
         player_x = 736
         
     # modificar ubicacion del enemigo
-    enemy_x += enemy_x_change
+    for e in range(quantity_enemies):
+        enemy_x[e] += enemy_x_change[e]
     
     # mantener dentro de bordes del enemigo
-    if enemy_x <= 0:
-        enemy_x_change = 1
-        enemy_y += enemy_y_change
-    elif enemy_x >= 736:
-        enemy_x_change = -1
-        enemy_y += enemy_y_change
+        if enemy_x[e] <= 0:
+            enemy_x_change[e] = 1
+            enemy_y[e] += enemy_y_change[e]
+        elif enemy_x[e] >= 736:
+            enemy_x_change[e] = -1
+            enemy_y[e] += enemy_y_change[e]
         
+    #colision
+        collision = is_collision(enemy_x[e],bullet_x,enemy_y[e],bullet_y)
+
+        if collision:
+            bullet_y = 500
+            visible_bullet = False
+            score += 1
+            enemy_x[e] = random.randint(0,736)
+            enemy_y[e] = random.randint(50,200)
+        
+        enemy(enemy_x[e],enemy_y[e], e)  
+            
     # modificar ubicacion de las balas
     if bullet_y <= -32:
         bullet_y = 500
@@ -115,18 +136,9 @@ while is_running:
         shoot_bullet(bullet_x,bullet_y)
         bullet_y -= bullet_y_change
         
-    #colision
-    collision = is_collision(enemy_x,bullet_x,enemy_y,bullet_y)
-
-    if collision:
-        bullet_y = 500
-        visible_bullet = False
-        score += 1
-        enemy_x = random.randint(0,736)
-        enemy_y = random.randint(50,200)
         
     player(player_x,player_y)
-    enemy(enemy_x,enemy_y)    
+   
     
     #actualizar
     pygame.display.update()
