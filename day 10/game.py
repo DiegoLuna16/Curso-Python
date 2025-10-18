@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+from pygame import mixer
 #Inicializa pygame
 pygame.init()
 
@@ -12,6 +13,11 @@ pygame.display.set_caption("Invasion espacial")
 icon = pygame.image.load("space.png")
 pygame.display.set_icon(icon)
 background_image = pygame.image.load('fondo.jpg')
+
+#agregar musica
+mixer.music.load('music.mp3')
+mixer.music.set_volume(0.3)
+mixer.music.play(-1)
 
 # Variables Jugador 
 img_player = pygame.image.load('cohete.png')
@@ -93,6 +99,9 @@ while is_running:
             elif event.key == pygame.K_RIGHT:
                 player_x_change += 2
             elif event.key == pygame.K_SPACE:
+                bullet_sound = mixer.Sound('shoot.mp3')
+                bullet_sound.set_volume(0.1)
+                bullet_sound.play()
                 if not visible_bullet:
                     bullet_x = player_x
                     shoot_bullet(bullet_x, bullet_y)
@@ -127,6 +136,9 @@ while is_running:
         collision = is_collision(enemy_x[e],bullet_x,enemy_y[e],bullet_y)
 
         if collision:
+            hit_sound = mixer.Sound('hit.mp3')
+            hit_sound.set_volume(0.1)
+            hit_sound.play()
             bullet_y = 500
             visible_bullet = False
             score += 1
