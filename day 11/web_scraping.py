@@ -21,5 +21,4 @@ imagen_curso = requests.get(imagen)
 f = open('mi_imagen.jpp', 'wb')
 f.write(imagen_curso.content)
 f.close()
-
     
