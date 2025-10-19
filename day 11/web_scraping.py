@@ -9,3 +9,7 @@ print(soup.select('title')[0].getText())
 parrafo_especial = soup.select('p')[3].getText()
 print(parrafo_especial)
 
+columna_lateral = soup.select('.widget-content h3')
+
+for h3 in columna_lateral:
+    print(h3.getText())
