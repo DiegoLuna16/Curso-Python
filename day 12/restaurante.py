@@ -2,6 +2,24 @@ from tkinter import *
 
 operador = ''
 
+precios_comida = [
+    75, 40, 50,
+    65, 45, 60, 70,
+    85
+]
+
+precios_bebida = [
+    25, 25, 25,
+    20, 20, 20,
+    30, 35
+]
+
+precios_postre = [
+    35, 45, 50, 50,
+    30, 30,
+    25, 40
+]
+
 def click_boton(numero):
     global operador
     operador = operador + numero
@@ -19,7 +37,76 @@ def obtener_resultado():
     visor_calculadora.delete(0,END)
     visor_calculadora.insert(0,resultado)
     operador = ''
+    
+def revisar_check():
+    x = 0
+    for c in cuadros_comida:
+        if variables_comida[x].get() == 1:
+            cuadros_comida[x].config(state=NORMAL)
+            if cuadros_comida[x].get() == '0':
+                cuadros_comida[x].delete(0,END)
+            cuadros_comida[x].focus()
+        else:
+            cuadros_comida[x].config(state=DISABLED)
+            texto_comida[x].set('0')
+        x += 1  
+          
+    x = 0
+    
+    for b in cuadros_bebida:
+        if variables_bebida[x].get() == 1:
+            cuadros_bebida[x].config(state=NORMAL)
+            if cuadros_bebida[x].get() == '0':
+                cuadros_bebida[x].delete(0,END)
+            cuadros_bebida[x].focus()
+        else:
+            cuadros_bebida[x].config(state=DISABLED)
+            texto_bebida[x].set('0')
+        x += 1   
+         
+    x = 0
+    
+    for p in cuadros_postre:
+        if variables_postre[x].get() == 1:
+            cuadros_postre[x].config(state=NORMAL)
+            if cuadros_postre[x].get() == '0':
+                cuadros_postre[x].delete(0,END)
+            cuadros_postre[x].focus()
+        else:
+            cuadros_postre[x].config(state=DISABLED)
+            texto_postre[x].set('0')
+        x += 1  
+        
+def total():
+    subtotal_comida = 0
+    p = 0
+    for cantidad in texto_comida:
+        subtotal_comida = subtotal_comida + (float(cantidad.get()) * precios_comida[p])
+        p += 1
 
+    subtotal_bebida = 0
+    p = 0
+    for cantidad in texto_bebida:
+        subtotal_bebida = subtotal_bebida + (float(cantidad.get()) * precios_bebida[p])
+        p += 1
+        
+    subtotal_postre = 0
+    p = 0
+    for cantidad in texto_postre:
+        subtotal_postre = subtotal_postre + (float(cantidad.get()) * precios_postre[p])
+        p += 1
+        
+    subtotal = subtotal_comida + subtotal_bebida + subtotal_postre
+    impuestos = subtotal * 0.16
+    total = subtotal + impuestos
+    
+    var_costo_comida.set(f'$ {round(subtotal_comida, 2)}')
+    var_costo_bebida.set(f'$ {round(subtotal_bebida, 2)}')
+    var_costo_postre.set(f'$ {round(subtotal_postre, 2)}')
+    var_costo_subtotal.set(f'$ {round(subtotal, 2)}')
+    var_costo_impuesto.set(f'$ {round(impuestos, 2)}')
+    var_costo_total.set(f'$ {round(total, 2)}')
+    
 #iniciar tkinter
 app = Tk()
 
@@ -121,7 +208,8 @@ for comida in lista_comidas:
                          font=('Dosis',15,'bold'),
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_comida[contador])
+                         variable=variables_comida[contador],
+                         command=revisar_check)
     comida.grid(row=contador, column=0, sticky=W)
     
     #crear los cuadros de entrada 
@@ -157,7 +245,8 @@ for bebida in lista_bebidas:
                          font=('Dosis',15,'bold'),
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_bebida[contador])
+                         variable=variables_bebida[contador],
+                         command=revisar_check)
     bebida.grid(row=contador, column=0, sticky=W)
     
     #crear los cuadros de entrada 
@@ -191,7 +280,8 @@ for postre in lista_postres:
                          font=('Dosis',15,'bold'),
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_postre[contador])
+                         variable=variables_postre[contador],
+                         command=revisar_check)
     postre.grid(row=contador, column=0, sticky=W)
     
     #crear los cuadros de entrada 
@@ -318,6 +408,7 @@ texto_total.grid(row=2, column=3, padx=41)
 
 #botones 
 botones = ['total','recibo','guardar','resetear']
+botones_creados = []
 
 columnas = 0
 
@@ -329,10 +420,14 @@ for boton in botones:
                    bg='#3c3c3c',
                    bd=1,
                    width=6)
+    
+    botones_creados.append(boton)
     boton.grid(row=0,
                column=columnas)
     
     columnas += 1
+    
+botones_creados[0].config(command=total)
     
 #area de recibo 
 texto_recibo = Text(panel_recibo,
