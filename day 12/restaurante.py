@@ -1,10 +1,30 @@
 from tkinter import *
 
+operador = ''
+
+def click_boton(numero):
+    global operador
+    operador = operador + numero
+    visor_calculadora.delete(0,END)
+    visor_calculadora.insert(END,operador)
+    
+def borrar():
+    global operador
+    operador = ''
+    visor_calculadora.delete(0,END)
+    
+def obtener_resultado():
+    global operador
+    resultado = str(eval(operador))
+    visor_calculadora.delete(0,END)
+    visor_calculadora.insert(0,resultado)
+    operador = ''
+
 #iniciar tkinter
 app = Tk()
 
 #tamaño de la pantalla
-app.geometry('1180x460+700+350')
+app.geometry('1195x500+700+350')
 
 # evitar maximizar 
 
@@ -23,7 +43,7 @@ panel_superior.pack(side=TOP)
 
 #etiqueta titulo
 etiqueta_titulo = Label(panel_superior, text='Sistema de facturacion', fg='black'
-                        ,font=('Dosis',58,'italic'), bg='burlywood',width=24)
+                        ,font=('Dosis',58,'italic'), bg='burlywood',width=25)
 etiqueta_titulo.grid(row=0, column=0)
 
 #panel izquierdo 
@@ -66,9 +86,24 @@ panel_botones = Frame(panel_derecha,bd=1,relief=FLAT,bg='burlywood')
 panel_botones.pack()
 
 # lista de productos
-lista_comidas = ['pollo','tacos','salmon','quesadillas','papa rellena','sopes','chilaquiles','enchiladas']
-lista_bebidas = ['Coca Cola','Pepsi','Fanta','Manzanita','Seven up','Agua de Horchata', 'Agua de Jamaica', 'Agua de limon']
-lista_postres = ['Flan','Pay de queso','Pastel de 3 leches','Pastel de chocolate','Gelatina','Nieve de limon','Nieve de vainilla','Jericalla']
+lista_comidas = [
+    'pollo', 'tacos', 'quesadillas',
+    'papa rellena', 'sopes', 'chilaquiles', 'enchiladas',
+    'pozole'
+]
+
+lista_bebidas = [
+    'Coca Cola', 'Pepsi', 'Manzanita',
+    'Agua de Horchata', 'Agua de Jamaica', 'Agua de limon',
+    'Té helado', 'Chocolate caliente'
+]
+
+lista_postres = [
+    'Flan', 'Pay de queso', 'Pastel de 3 leches', 'Pastel de chocolate',
+     'Nieve de limon', 'Nieve de vainilla',
+    'Churros', 'Brownie'
+]
+
 
 #generar items comida
 variables_comida = []
@@ -83,7 +118,7 @@ for comida in lista_comidas:
     variables_comida[contador] = IntVar()
     comida = Checkbutton(panel_comidas,
                          text=comida.title(),
-                         font=('Dosis',13,'bold'),
+                         font=('Dosis',15,'bold'),
                          onvalue=1,
                          offvalue=0,
                          variable=variables_comida[contador])
@@ -95,10 +130,11 @@ for comida in lista_comidas:
     texto_comida[contador] = StringVar()
     texto_comida[contador].set('0')
     cuadros_comida[contador] = Entry(panel_comidas,
-                                     font=('Dosis',12,'bold'),
+                                     font=('Dosis',15,'bold'),
                                      bd=1,
-                                     width=6,
+                                     width=4,
                                      state=DISABLED,
+                                     relief='raised',
                                      textvariable=texto_comida[contador])
     cuadros_comida[contador].grid(row=contador,
                                   column=1)
@@ -116,8 +152,12 @@ for bebida in lista_bebidas:
     
     variables_bebida.append('')
     variables_bebida[contador] = IntVar()
-    bebida = Checkbutton(panel_bebidas, text=bebida.title(), font=('Dosis',13,'bold'),
-                         onvalue=1, offvalue=0,variable=variables_bebida[contador])
+    bebida = Checkbutton(panel_bebidas,
+                         text=bebida.title(),
+                         font=('Dosis',15,'bold'),
+                         onvalue=1,
+                         offvalue=0,
+                         variable=variables_bebida[contador])
     bebida.grid(row=contador, column=0, sticky=W)
     
     #crear los cuadros de entrada 
@@ -126,9 +166,9 @@ for bebida in lista_bebidas:
     texto_bebida[contador] = StringVar()
     texto_bebida[contador].set('0')
     cuadros_bebida[contador] = Entry(panel_bebidas,
-                                     font=('Dosis',12,'bold'),
+                                     font=('Dosis',15,'bold'),
                                      bd=1,
-                                     width=6,
+                                     width=4,
                                      state=DISABLED,
                                      textvariable=texto_bebida[contador])
     cuadros_bebida[contador].grid(row=contador,
@@ -146,8 +186,12 @@ for postre in lista_postres:
     #crear checkbuttons
     variables_postre.append('')
     variables_postre[contador] = IntVar()
-    postre = Checkbutton(panel_postres, text=postre.title(), font=('Dosis',13,'bold'),
-                         onvalue=1, offvalue=0,variable=variables_postre[contador])
+    postre = Checkbutton(panel_postres,
+                         text=postre.title(),
+                         font=('Dosis',15,'bold'),
+                         onvalue=1,
+                         offvalue=0,
+                         variable=variables_postre[contador])
     postre.grid(row=contador, column=0, sticky=W)
     
     #crear los cuadros de entrada 
@@ -156,9 +200,9 @@ for postre in lista_postres:
     texto_postre[contador] = StringVar()
     texto_postre[contador].set('0')
     cuadros_postre[contador] = Entry(panel_postres,
-                                     font=('Dosis',12,'bold'),
+                                     font=('Dosis',15,'bold'),
                                      bd=1,
-                                     width=6,
+                                     width=4,
                                      state=DISABLED,
                                      textvariable=texto_postre[contador])
     cuadros_postre[contador].grid(row=contador,
@@ -299,6 +343,61 @@ texto_recibo = Text(panel_recibo,
 
 texto_recibo.grid(row=0, column=0)
 
+#calculadora 
+visor_calculadora = Entry(panel_calculadora,
+                          font=('Dosis','16','bold'),
+                          width=28
+                          )
+
+visor_calculadora.grid(row=0,
+                       column=0,
+                       columnspan=4)
+
+botones_calculadora = ['7','8','9','+',
+                       '4','5','6','-',
+                       '1','2','3','x',
+                       'R','B','0','/']
+
+botones_guardados = []
+
+fila = 1
+columa = 0
+
+for boton in botones_calculadora:
+    boton = Button(panel_calculadora,
+                   text=boton.title(),
+                   font=('Dosis',12,'bold'),
+                   fg='black',
+                   bg='azure4',
+                   width=6)
+    
+    botones_guardados.append(boton)
+    
+    boton.grid(row=fila,column=columa)
+    if columa == 3:
+        fila +=1
+    
+    columa += 1    
+    
+    if columa == 4:    
+        columa = 0
+        
+botones_guardados[0].config(command=lambda : click_boton('7'))
+botones_guardados[1].config(command=lambda : click_boton('8'))
+botones_guardados[2].config(command=lambda : click_boton('9'))
+botones_guardados[3].config(command=lambda : click_boton('+'))
+botones_guardados[4].config(command=lambda : click_boton('4'))
+botones_guardados[5].config(command=lambda : click_boton('5'))
+botones_guardados[6].config(command=lambda : click_boton('6'))
+botones_guardados[7].config(command=lambda : click_boton('-'))
+botones_guardados[8].config(command=lambda : click_boton('1'))
+botones_guardados[9].config(command=lambda : click_boton('2'))
+botones_guardados[10].config(command=lambda : click_boton('3'))
+botones_guardados[11].config(command=lambda : click_boton('*'))
+botones_guardados[12].config(command=obtener_resultado)
+botones_guardados[13].config(command=borrar)
+botones_guardados[14].config(command=lambda : click_boton('0'))
+botones_guardados[15].config(command=lambda : click_boton('/'))
 
 #evitar que la pantalla se cierre
 app.mainloop()
