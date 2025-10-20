@@ -4,7 +4,7 @@ from tkinter import *
 app = Tk()
 
 #tamaño de la pantalla
-app.geometry('1020x460+700+350')
+app.geometry('1180x460+700+350')
 
 # evitar maximizar 
 
@@ -22,8 +22,8 @@ panel_superior = Frame(app, bd=1,relief=FLAT)
 panel_superior.pack(side=TOP)
 
 #etiqueta titulo
-etiqueta_titulo = Label(panel_superior, text='Sistema de facturacion', fg='azure4'
-                        ,font=('Dosis',58), bg='burlywood',width=22)
+etiqueta_titulo = Label(panel_superior, text='Sistema de facturacion', fg='black'
+                        ,font=('Dosis',58,'italic'), bg='burlywood',width=24)
 etiqueta_titulo.grid(row=0, column=0)
 
 #panel izquierdo 
@@ -272,6 +272,32 @@ texto_total = Entry(panel_costos,
 
 texto_total.grid(row=2, column=3, padx=41)
 
+#botones 
+botones = ['total','recibo','guardar','resetear']
+
+columnas = 0
+
+for boton in botones:
+    boton = Button(panel_botones,
+                   text=boton.title(),
+                   font=('Helvetica',14,'bold'),
+                   fg='black',
+                   bg='#3c3c3c',
+                   bd=1,
+                   width=6)
+    boton.grid(row=0,
+               column=columnas)
+    
+    columnas += 1
+    
+#area de recibo 
+texto_recibo = Text(panel_recibo,
+                    font=('Dosis',12,'bold'),
+                    bd=1,
+                    width=35,
+                    height=10)
+
+texto_recibo.grid(row=0, column=0)
 
 
 #evitar que la pantalla se cierre
