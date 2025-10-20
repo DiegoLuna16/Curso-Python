@@ -4,7 +4,7 @@ from tkinter import *
 app = Tk()
 
 #tamaño de la pantalla
-app.geometry('1020x630+700+350')
+app.geometry('1020x460+700+350')
 
 # evitar maximizar 
 
@@ -31,7 +31,7 @@ panel_izquierdo = Frame(app,bd=1,relief=FLAT)
 panel_izquierdo.pack(side=LEFT)
 
 #panel costos
-panel_costos = Frame(panel_izquierdo,bd=1,relief=FLAT)
+panel_costos = Frame(panel_izquierdo,bd=1,relief=FLAT, bg='azure4',padx=40)
 panel_costos.pack(side=BOTTOM)
 
 #panel comidas 
@@ -166,8 +166,113 @@ for postre in lista_postres:
     
     contador += 1
 
+#variables
+var_costo_comida = StringVar()
+var_costo_bebida = StringVar()
+var_costo_postre = StringVar()
+var_costo_subtotal = StringVar()
+var_costo_impuesto = StringVar()
+var_costo_total = StringVar()
 
-#
+# etiquetas de costo y campos de entrada
+
+etiqueta_costo_comida = Label(panel_costos,
+                              text='Costo Comida',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_costo_comida.grid(row=0,column=0)
+
+texto_costo_comida = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_comida)
+
+texto_costo_comida.grid(row=0, column=1, padx=41)
+
+etiqueta_costo_bebida = Label(panel_costos,
+                              text='Costo Bebida',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_costo_bebida.grid(row=1,column=0)
+
+texto_costo_bebida = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_bebida)
+
+texto_costo_bebida.grid(row=1, column=1, padx=41)
+
+etiqueta_costo_postre = Label(panel_costos,
+                              text='Costo Postre',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_costo_postre.grid(row=2,column=0)
+
+texto_costo_postre = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_postre)
+
+texto_costo_postre.grid(row=2, column=1, padx=41)
+
+etiqueta_subtotal = Label(panel_costos,
+                              text='Costo Postre',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_subtotal.grid(row=0,column=2)
+
+texto_subtotal = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_subtotal)
+
+texto_subtotal.grid(row=0, column=3, padx=41)
+
+etiqueta_impuesto = Label(panel_costos,
+                              text='Costo Impuestos',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_impuesto.grid(row=1,column=2)
+
+texto_impuesto = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_impuesto)
+
+texto_impuesto.grid(row=1, column=3, padx=41)
+
+etiqueta_total = Label(panel_costos,
+                              text='Costo Total',
+                              font=('Dosis',13,'bold'),
+                              bg='azure4',
+                              fg='white')
+etiqueta_total.grid(row=2,column=2)
+
+texto_total = Entry(panel_costos,
+                           font=('Dosis',13,'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_total)
+
+texto_total.grid(row=2, column=3, padx=41)
+
+
 
 #evitar que la pantalla se cierre
 app.mainloop()
