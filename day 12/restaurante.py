@@ -75,6 +75,7 @@ variables_comida = []
 cuadros_comida = []
 texto_comida = []
 
+
 contador = 0
 for comida in lista_comidas:
     #crear checkbuttons
@@ -91,6 +92,8 @@ for comida in lista_comidas:
     #crear los cuadros de entrada 
     cuadros_comida.append('')
     texto_comida.append('')
+    texto_comida[contador] = StringVar()
+    texto_comida[contador].set('0')
     cuadros_comida[contador] = Entry(panel_comidas,
                                      font=('Dosis',12,'bold'),
                                      bd=1,
@@ -120,6 +123,8 @@ for bebida in lista_bebidas:
     #crear los cuadros de entrada 
     cuadros_bebida.append('')
     texto_bebida.append('')
+    texto_bebida[contador] = StringVar()
+    texto_bebida[contador].set('0')
     cuadros_bebida[contador] = Entry(panel_bebidas,
                                      font=('Dosis',12,'bold'),
                                      bd=1,
@@ -148,6 +153,8 @@ for postre in lista_postres:
     #crear los cuadros de entrada 
     cuadros_postre.append('')
     texto_postre.append('')
+    texto_postre[contador] = StringVar()
+    texto_postre[contador].set('0')
     cuadros_postre[contador] = Entry(panel_postres,
                                      font=('Dosis',12,'bold'),
                                      bd=1,
@@ -158,6 +165,9 @@ for postre in lista_postres:
                                   column=1)
     
     contador += 1
+
+
+#
 
 #evitar que la pantalla se cierre
 app.mainloop()
