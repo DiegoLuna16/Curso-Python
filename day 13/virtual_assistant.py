@@ -60,5 +60,14 @@ def transformar_audio_en_texto():
             # devolver error
             return 'sigo esperando'
         
-if __name__ == "__main__":
-    transformar_audio_en_texto()
+#funcion para el asistente puede ser escuchado
+def hablar(mensaje):
+    
+    #encender el motor de pyttsx3
+    engine = pyttsx3.init()
+    
+    #pronunciar mensaje
+    engine.say(mensaje)
+    engine.runAndWait()
+
+hablar('hola como estas')
