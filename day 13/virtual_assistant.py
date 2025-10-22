@@ -93,4 +93,14 @@ def pedir_dia():
     #decir el dia de la semana
     hablar(f'Hoy es {calendario[dia_semana]}')
     
-pedir_dia()
+# informar que hora es
+def pedir_hora():
+    
+    #crear variable con los datos de la hora
+    hora = datetime.datetime.now()
+    
+    # decir la hora 
+    hora = f'Son las {hora.hour} horas con {hora.minute} minutos y {hora.second} segundos'
+    hablar(hora)
+    
+pedir_hora()
